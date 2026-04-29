@@ -5,29 +5,38 @@
   <title>ProFix Handy Services</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+  
 <body>
 
-<header>
-  <h1>ProFix Handy Services</h1>
-  <p class="tagline">Reliable repairs. Precision service. Your trusted local handyman.</p>
-</header>
-
+<!-- HERO -->
 <section class="hero">
-  <img src="builder-handymann.webp" alt="Work Image">
+  <div class="overlay">
+    <h1>ProFix Handy Services</h1>
+    <p>Reliable repairs. Precision service. Your trusted local handyman.</p>
+    <button onclick="scrollToQuote()">Get a Quote</button>
+  </div>
 </section>
 
+<!-- SERVICES -->
 <section class="services">
-  <h2>Services</h2>
-  <ul>
-    <li>Electrical</li>
-    <li>Plumbing</li>
-    <li>Repairs</li>
-    <li>Assembly</li>
-    <li>Installation</li>
-  </ul>
+  <h2>What We Do</h2>
+  <div class="service-grid">
+    <div>Electrical</div>
+    <div>Plumbing</div>
+    <div>Repairs</div>
+    <div>Assembly</div>
+    <div>Installation</div>
+  </div>
 </section>
 
-<section class="quote">
+<!-- EV SECTION -->
+<section class="ev">
+  <h2>EV Charger Outlet Installation</h2>
+  <p>Safe, reliable installation and inspection for your home charging setup.</p>
+</section>
+
+<!-- QUOTE -->
+<section class="quote" id="quote">
   <h2>Get a Quote</h2>
 
   <select id="category">
@@ -43,10 +52,10 @@
   <p id="result"></p>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <p>Contact: profix.dfw26@gmail.com</p>
 </footer>
 
 <script src="script.js"></script>
 </body>
-</html>
