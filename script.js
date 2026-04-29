@@ -1,31 +1,99 @@
-const subcategories = {
-  electrical: ["Outlet Repair", "EV Charger Install"],
-  plumbing: ["Faucet Repair", "Toilet Replace"]
+const data = {
+  electrical: {
+    "Outlet / Switch": {
+      "Replace existing": 125,
+      "New install": "custom"
+    },
+    "EV Charger Outlet": {
+      "Inspection": 125,
+      "New install": "custom"
+    }
+  },
+  plumbing: {
+    "Faucet": {
+      "Replace": 125,
+      "Install": 150
+    },
+    "Toilet": {
+      "Repair": 125,
+      "Replace": 200
+    }
+  },
+  repairs: {
+    "Drywall": {
+      "Patch": 125,
+      "Medium repair": "custom"
+    },
+    "Doors": {
+      "Alignment": 125,
+      "Hardware replacement": 150
+    }
+  },
+  assembly: {
+    "Furniture": {
+      "Standard": 125
+    }
+  },
+  installation: {
+    "TV Mounting": {
+      "Standard": 150
+    }
+  }
 };
 
-document.getElementById("category").addEventListener("change", function() {
-  let sub = document.getElementById("subcategory");
-  sub.innerHTML = "";
+const categoryEl = document.getElementById("category");
+const subEl = document.getElementById("subcategory");
+const detailEl = document.getElementById("details");
 
-  subcategories[this.value]?.forEach(item => {
-    let option = document.createElement("option");
-    option.text = item;
-    sub.add(option);
-  });
+categoryEl.addEventListener("change", () => {
+  subEl.innerHTML = "<option>Select Subcategory</option>";
+  detailEl.innerHTML = "";
+
+  let subs = data[categoryEl.value];
+  for (let key in subs) {
+    let opt = document.createElement("option");
+    opt.value = key;
+    opt.textContent = key;
+    subEl.appendChild(opt);
+  }
+});
+
+subEl.addEventListener("change", () => {
+  detailEl.innerHTML = "<option>Select Detail</option>";
+
+  let details = data[categoryEl.value][subEl.value];
+  for (let key in details) {
+    let opt = document.createElement("option");
+    opt.value = key;
+    opt.textContent = key;
+    detailEl.appendChild(opt);
+  }
 });
 
 function generateQuote() {
-  let cat = document.getElementById("category").value;
-  let sub = document.getElementById("subcategory").value;
+  let cat = categoryEl.value;
+  let sub = subEl.value;
+  let det = detailEl.value;
+  let materials = document.getElementById("materials").value;
   let result = document.getElementById("result");
 
-  if (sub === "EV Charger Install") {
-    result.innerText = "Custom quote required. We will contact you.";
-  } else {
-    result.innerText = "Estimated: $125 - $250";
+  if (!cat || !sub || !det) {
+    result.innerText = "Please complete all selections.";
+    return;
   }
-}
 
-function scrollToQuote() {
-  document.getElementById("quote").scrollIntoView({ behavior: "smooth" });
+  let price = data[cat][sub][det];
+
+  if (price === "custom") {
+    result.innerText = "This job requires a custom quote. We will contact you.";
+    return;
+  }
+
+  let finalPrice = price;
+
+  if (materials === "profix") {
+    finalPrice = Math.round(price * 1.15);
+  }
+
+  result.innerText = "Estimated Price: $" + finalPrice;
 }
