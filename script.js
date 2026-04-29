@@ -85,7 +85,7 @@ function generateQuote() {
   let price = data[cat][sub][det];
 
   if (price === "custom") {
-    result.innerText = "This job requires a custom quote. We will contact you.";
+    result.innerText = "This job requires a custom quote. Please submit the form below and we will follow up.";
     return;
   }
 
