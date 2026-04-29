@@ -98,3 +98,7 @@ function generateQuote() {
     result.innerText = "Estimated Labor: $" + finalPrice + " (customer supplies materials)";
   }
 }
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark");
+}
