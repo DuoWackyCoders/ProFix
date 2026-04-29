@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ProFix Handy Services</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+<header>
+  <h1>ProFix Handy Services</h1>
+  <p class="tagline">Repairs you can rely on. Service you’ll remember.</p>
+</header>
+
+<section class="hero">
+  <img src="images/sample.jpg" alt="Work Image">
+</section>
+
+<section class="services">
+  <h2>Services</h2>
+  <ul>
+    <li>Electrical</li>
+    <li>Plumbing</li>
+    <li>Repairs</li>
+    <li>Assembly</li>
+    <li>Installation</li>
+  </ul>
+</section>
+
+<section class="quote">
+  <h2>Get a Quote</h2>
+
+  <select id="category">
+    <option value="">Select Category</option>
+    <option value="electrical">Electrical</option>
+    <option value="plumbing">Plumbing</option>
+  </select>
+
+  <select id="subcategory"></select>
+
+  <button onclick="generateQuote()">Get Estimate</button>
+
+  <p id="result"></p>
+</section>
+
+<footer>
+  <p>Contact: profix.dfw26@gmail.com</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
