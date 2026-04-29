@@ -7,7 +7,7 @@ body {
 
 /* HERO */
 .hero {
-  height: 100vh;
+  height: 75vh;
   background: url('images/builder-handymann.webp') center/cover no-repeat;
   display: flex;
   align-items: center;
@@ -16,8 +16,8 @@ body {
 
 .overlay {
   background: rgba(255,255,255,0.85);
-  padding: 40px;
-  text-align: center;
+  padding: 25px;
+  max-width: 500px;
 }
 
 .overlay h1 {
@@ -40,7 +40,7 @@ button {
 
 /* SERVICES */
 .services {
-  padding: 80px 20px;
+  padding: 50px 20px;
   text-align: center;
 }
 
