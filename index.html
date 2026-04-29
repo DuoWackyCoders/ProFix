@@ -39,17 +39,34 @@
 <section class="quote" id="quote">
   <h2>Get a Quote</h2>
 
-  <select id="category">
-    <option value="">Select Category</option>
-    <option value="electrical">Electrical</option>
-    <option value="plumbing">Plumbing</option>
+<select id="category">
+  <option value="">Select Category</option>
+  <option value="electrical">Electrical</option>
+  <option value="plumbing">Plumbing</option>
+  <option value="repairs">Repairs</option>
+  <option value="assembly">Assembly</option>
+  <option value="installation">Installation</option>
+</select>
+
+<select id="subcategory"></select>
+
+<select id="details"></select>
+
+<br><br>
+
+<label>
+  Materials:
+  <select id="materials">
+    <option value="customer">I will supply materials</option>
+    <option value="profix">ProFix supplies materials (+15%)</option>
   </select>
+</label>
 
-  <select id="subcategory"></select>
+<br><br>
 
-  <button onclick="generateQuote()">Get Estimate</button>
+<button onclick="generateQuote()">Get Estimate</button>
 
-  <p id="result"></p>
+<p id="result"></p>
 </section>
 
 <!-- FOOTER -->
