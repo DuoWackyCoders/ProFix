@@ -67,6 +67,21 @@
 <button onclick="generateQuote()">Get Estimate</button>
 
 <p id="result"></p>
+  
+  <br><br>
+
+  <form action="https://formspree.io/f/yourID" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required><br><br>
+    <input type="email" name="email" placeholder="Your Email" required><br><br>
+    <textarea name="message" placeholder="Describe your job..." required></textarea><br><br>
+
+    <br>
+    <label>Upload Photo (optional):</label><br>
+    <input type="file" name="attachment">
+
+    <button type="submit">Submit Request</button>
+  </form>
+  
 </section>
 
 <!-- FOOTER -->
