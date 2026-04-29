@@ -91,9 +91,10 @@ function generateQuote() {
 
   let finalPrice = price;
 
-  if (materials === "profix") {
-    finalPrice = Math.round(price * 1.15);
-  }
 
-  result.innerText = "Estimated Price: $" + finalPrice;
+  if (materials === "profix") {
+    result.innerText = "Estimated Labor: $" + finalPrice + ". Materials are billed separately based on project requirements.";
+  } else {
+    result.innerText = "Estimated Labor: $" + finalPrice + " (customer supplies materials)";
+  }
 }
