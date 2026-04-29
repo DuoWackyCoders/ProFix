@@ -25,3 +25,7 @@ function generateQuote() {
     result.innerText = "Estimated: $125 - $250";
   }
 }
+
+function scrollToQuote() {
+  document.getElementById("quote").scrollIntoView({ behavior: "smooth" });
+}
