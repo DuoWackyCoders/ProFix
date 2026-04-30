@@ -17,8 +17,12 @@ section.show {
 
 /* HERO */
 .hero {
-  height: 60vh;
-  min-height: 350px;
+  height: 55vh;
+  min-height: 340px;
+  background: url("images/builder-handymann.webp") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .overlay {
@@ -97,6 +101,7 @@ button {
 }
 
 /* Reviews */
+
 .review {
   margin: 20px auto;
   max-width: 500px;
@@ -105,6 +110,26 @@ button {
 .reviews {
   padding: 60px 20px;
   background: #f9f9f9;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 25px auto 0;
+}
+
+.review-card {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  text-align: left;
+}
+
+.dark .review-card {
+  background: #222;
 }
 
 /* QUOTE */
