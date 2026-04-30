@@ -124,3 +124,19 @@ window.addEventListener("scroll", () => {
 
 window.dispatchEvent(new Event("scroll"));
 
+
+const reviewContainer = document.querySelector(".review-grid");
+
+let scrollAmount = 0;
+
+setInterval(() => {
+  if (reviewContainer) {
+    scrollAmount += 1;
+    reviewContainer.scrollLeft = scrollAmount;
+
+    if (scrollAmount >= reviewContainer.scrollWidth) {
+      scrollAmount = 0;
+    }
+  }
+}, 50);
+
