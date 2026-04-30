@@ -101,4 +101,24 @@ function generateQuote() {
 
 function toggleDarkMode() {
   document.body.classList.toggle("dark");
+
+  const btn = document.getElementById("darkToggle");
+
+  if (document.body.classList.contains("dark")) {
+    btn.innerText = "☀️";
+  } else {
+    btn.innerText = "🌙";
+  }
 }
+
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top < window.innerHeight - 50) {
+      sec.classList.add("show");
+    }
+  });
+});
+
