@@ -8,6 +8,8 @@
   
 <body>
 
+  <button id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
 <!-- HERO -->
 <section class="hero">
   <div class="overlay">
@@ -15,7 +17,6 @@
     <p>Reliable repairs. Precision service. Your trusted local handyman.</p>
     <button onclick="scrollToQuote()">Get a Quote</button>
     <br><br>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </div>
 </section>
 
@@ -45,15 +46,26 @@
     <img src="images/builder-handymann.webp">
   </div>
 </section>
-
+  
   <section class="reviews">
-  <h2>Customer Reviews</h2>
+    <h2>Customer Reviews</h2>
 
-  <p>"Great work, fast and reliable!"</p>
-  <p>"Very professional and fair pricing."</p>
-  <p>"Will definitely hire again."</p>
+    <div class="review">
+      <strong>John D.</strong>
+      <p>Great work, fast and reliable!</p>
+    </div>
 
-</section>
+    <div class="review">
+      <strong>Sarah M.</strong>
+      <p>Very professional and fair pricing.</p>
+    </div>
+
+    <div class="review">
+      <strong>Mike R.</strong>
+      <p>Will definitely hire again.</p>
+    </div>
+
+  </section>
 
 <!-- QUOTE -->
 <section class="quote" id="quote">
