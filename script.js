@@ -7,6 +7,10 @@ const data = {
     "EV Charger Outlet": {
       "Inspection": 125,
       "New install": "custom"
+    },
+    "Lighting": {
+      "Replace fixture": 125,
+      "New install": "custom"
     }
   },
   plumbing: {
@@ -21,7 +25,7 @@ const data = {
   },
   repairs: {
     "Drywall": {
-      "Patch": 125,
+      "Small patch": 125,
       "Medium repair": "custom"
     },
     "Doors": {
@@ -31,12 +35,22 @@ const data = {
   },
   assembly: {
     "Furniture": {
-      "Standard": 125
+      "Standard assembly": 125,
+      "Large / complex assembly": "custom"
+    },
+    "Outdoor items": {
+      "Standard assembly": 150,
+      "Large / complex assembly": "custom"
     }
   },
   installation: {
     "TV Mounting": {
-      "Standard": 150
+      "Standard mount": 150,
+      "Large TV / special wall": "custom"
+    },
+    "Shelving / Wall Hanging": {
+      "Standard install": 125,
+      "Multiple items": "custom"
     }
   }
 };
@@ -44,99 +58,124 @@ const data = {
 const categoryEl = document.getElementById("category");
 const subEl = document.getElementById("subcategory");
 const detailEl = document.getElementById("details");
+const resultEl = document.getElementById("result");
+
+function resetDropdown(dropdown, text) {
+  dropdown.innerHTML = "";
+  const option = document.createElement("option");
+  option.value = "";
+  option.textContent = text;
+  dropdown.appendChild(option);
+}
+
+function loadSubcategories(category) {
+  resetDropdown(subEl, "Select Subcategory");
+  resetDropdown(detailEl, "Select Detail");
+
+  if (!category || !data[category]) return;
+
+  Object.keys(data[category]).forEach(subcategory => {
+    const option = document.createElement("option");
+    option.value = subcategory;
+    option.textContent = subcategory;
+    subEl.appendChild(option);
+  });
+}
+
+function loadDetails(category, subcategory) {
+  resetDropdown(detailEl, "Select Detail");
+
+  if (!category || !subcategory || !data[category][subcategory]) return;
+
+  Object.keys(data[category][subcategory]).forEach(detail => {
+    const option = document.createElement("option");
+    option.value = detail;
+    option.textContent = detail;
+    detailEl.appendChild(option);
+  });
+}
 
 categoryEl.addEventListener("change", () => {
-  subEl.innerHTML = "<option>Select Subcategory</option>";
-  detailEl.innerHTML = "";
-
-  let subs = data[categoryEl.value];
-  for (let key in subs) {
-    let opt = document.createElement("option");
-    opt.value = key;
-    opt.textContent = key;
-    subEl.appendChild(opt);
-  }
+  loadSubcategories(categoryEl.value);
+  resultEl.innerText = "";
 });
 
 subEl.addEventListener("change", () => {
-  detailEl.innerHTML = "<option>Select Detail</option>";
+  loadDetails(categoryEl.value, subEl.value);
+  resultEl.innerText = "";
+});
 
-  let details = data[categoryEl.value][subEl.value];
-  for (let key in details) {
-    let opt = document.createElement("option");
-    opt.value = key;
-    opt.textContent = key;
-    detailEl.appendChild(opt);
-  }
+detailEl.addEventListener("change", () => {
+  resultEl.innerText = "";
 });
 
 function generateQuote() {
-  let cat = categoryEl.value;
-  let sub = subEl.value;
-  let det = detailEl.value;
-  let materials = document.getElementById("materials").value;
-  let result = document.getElementById("result");
+  const cat = categoryEl.value;
+  const sub = subEl.value;
+  const det = detailEl.value;
+  const materials = document.getElementById("materials").value;
 
   if (!cat || !sub || !det) {
-    result.innerText = "Please complete all selections.";
+    resultEl.innerText = "Please complete all quote selections.";
     return;
   }
 
-  let price = data[cat][sub][det];
+  const price = data[cat][sub][det];
 
   if (price === "custom") {
-    result.innerText = "This job requires a custom quote. Please submit the form below and we will follow up.";
+    resultEl.innerText = "Custom quote needed. Please submit the form below and we will follow up.";
     return;
   }
 
-  let finalPrice = price;
-
-
   if (materials === "profix") {
-    result.innerText = "Estimated Labor: $" + finalPrice + ". Materials are billed separately based on project requirements.";
+    resultEl.innerText = `Estimated Labor: $${price}. Materials are priced separately.`;
   } else {
-    result.innerText = "Estimated Labor: $" + finalPrice + " (customer supplies materials)";
+    resultEl.innerText = `Estimated Labor: $${price}.`;
   }
+}
+
+function scrollToQuote() {
+  document.getElementById("quote").scrollIntoView({ behavior: "smooth" });
 }
 
 function toggleDarkMode() {
   document.body.classList.toggle("dark");
 
   const btn = document.getElementById("darkToggle");
+  btn.innerText = document.body.classList.contains("dark") ? "☀️" : "🌙";
+}
 
-  if (document.body.classList.contains("dark")) {
-    btn.innerText = "☀️";
-  } else {
-    btn.innerText = "🌙";
-  }
+function selectService(category) {
+  categoryEl.value = category;
+  loadSubcategories(category);
+  scrollToQuote();
 }
 
 const sections = document.querySelectorAll("section");
 
-window.addEventListener("scroll", () => {
+function revealSections() {
   sections.forEach(sec => {
     const top = sec.getBoundingClientRect().top;
-    if (top < window.innerHeight - 50) {
+    if (top < window.innerHeight - 80) {
       sec.classList.add("show");
     }
   });
-});
+}
 
+window.addEventListener("scroll", revealSections);
+window.addEventListener("load", revealSections);
 window.dispatchEvent(new Event("scroll"));
 
-
 const reviewContainer = document.querySelector(".review-grid");
-
 let scrollAmount = 0;
 
 setInterval(() => {
-  if (reviewContainer) {
+  if (reviewContainer && reviewContainer.scrollWidth > reviewContainer.clientWidth) {
     scrollAmount += 1;
     reviewContainer.scrollLeft = scrollAmount;
 
-    if (scrollAmount >= reviewContainer.scrollWidth) {
+    if (scrollAmount >= reviewContainer.scrollWidth - reviewContainer.clientWidth) {
       scrollAmount = 0;
     }
   }
-}, 50);
-
+}, 60);
