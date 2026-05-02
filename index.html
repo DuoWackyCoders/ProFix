@@ -5,124 +5,117 @@
   <title>ProFix Handy Services</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-  
+
 <body>
 
-  <button id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+<button id="darkToggle" onclick="toggleDarkMode()">🌙</button>
 
 <!-- HERO -->
 <section class="hero">
   <div class="overlay">
-    <h1>ProFix Handy Services</h1>
+    <img class="logo" src="images/profix-logo.svg" alt="ProFix Handy Services Logo">
     <p>Reliable repairs. Precision service. Your trusted local handyman.</p>
     <button onclick="scrollToQuote()">Get a Quote</button>
-    <br><br>
   </div>
 </section>
 
 <!-- SERVICES -->
 <section class="services">
   <h2>What We Do</h2>
+
   <div class="service-grid">
-    <div>Electrical</div>
-    <div>Plumbing</div>
-    <div>Repairs</div>
-    <div>Assembly</div>
-    <div>Installation</div>
+    <div onclick="selectService('electrical')"><span>⚡</span>Electrical</div>
+    <div onclick="selectService('plumbing')"><span>🚰</span>Plumbing</div>
+    <div onclick="selectService('repairs')"><span>🛠️</span>Repairs</div>
+    <div onclick="selectService('assembly')"><span>🪑</span>Assembly</div>
+    <div onclick="selectService('installation')"><span>📺</span>Installation</div>
   </div>
 </section>
 
 <!-- EV SECTION -->
 <section class="ev">
   <h2>EV Charger Outlet Installation</h2>
-  <p>Safe, reliable installation and inspection for your home charging setup.</p>
+  <p>Home EV outlet inspections and install quotes for safe charging setup.</p>
+  <button onclick="selectService('electrical')">Request EV Quote</button>
 </section>
 
-  <section class="gallery">
+<!-- GALLERY -->
+<section class="gallery">
   <h2>Our Work</h2>
+
   <div class="gallery-grid">
-    <img src="images/builder-handymann.webp">
-    <img src="images/builder-handymann.webp">
-    <img src="images/builder-handymann.webp">
+    <img src="images/builder-handymann.webp" alt="Handyman work sample">
+    <img src="images/builder-handymann.webp" alt="Handyman work sample">
+    <img src="images/builder-handymann.webp" alt="Handyman work sample">
   </div>
 </section>
-  
-  <section class="reviews">
-    <h2>Customer Reviews</h2>
 
-    <div class="review-grid">
-    
-      <div class="review-card">
-        <strong>John D.</strong>
-        <p>Great work, fast and reliable!</p>
-      </div>
+<!-- REVIEWS -->
+<section class="reviews">
+  <h2>Customer Reviews</h2>
 
-      <div class="review-card">
-        <strong>Sarah M.</strong>
-        <p>Very professional and fair pricing.</p>
-      </div>
-
-      <div class="review-card">
-        <strong>Mike R.</strong>
-        <p>Will definitely hire again.</p>
-      </div>
-
-      <!-- *** To add new reviews __>
-      <!-- <div class="review-card">
-        <strong>Name Here</strong>
-        <p>Review text here.</p>
-      </div> -->
-    
+  <div class="review-grid">
+    <div class="review-card">
+      <strong>John D.</strong>
+      <p>Great work, fast and reliable!</p>
     </div>
-  </section>
+
+    <div class="review-card">
+      <strong>Sarah M.</strong>
+      <p>Very professional and fair pricing.</p>
+    </div>
+
+    <div class="review-card">
+      <strong>Mike R.</strong>
+      <p>Will definitely hire again.</p>
+    </div>
+  </div>
+</section>
 
 <!-- QUOTE -->
 <section class="quote" id="quote">
   <h2>Get a Quote</h2>
 
-<select id="category">
-  <option value="">Select Category</option>
-  <option value="electrical">Electrical</option>
-  <option value="plumbing">Plumbing</option>
-  <option value="repairs">Repairs</option>
-  <option value="assembly">Assembly</option>
-  <option value="installation">Installation</option>
-</select>
-
-<select id="subcategory"></select>
-
-<select id="details"></select>
-
-<br><br>
-
-<label>
-  Materials:
-  <select id="materials">
-    <option value="customer">I will supply materials</option>
-    <option value="profix">ProFix supplies materials (+15%)</option>
+  <select id="category">
+    <option value="">Select Category</option>
+    <option value="electrical">Electrical</option>
+    <option value="plumbing">Plumbing</option>
+    <option value="repairs">Repairs</option>
+    <option value="assembly">Assembly</option>
+    <option value="installation">Installation</option>
   </select>
-</label>
 
-<br><br>
+  <select id="subcategory"></select>
+  <select id="details"></select>
 
-<button onclick="generateQuote()">Get Estimate</button>
-
-<p id="result"></p>
-  
   <br><br>
 
-  <form action="https://formspree.io/f/mdabnabb" method="POST">
+  <label>
+    Materials:
+    <select id="materials">
+      <option value="customer">I will supply materials</option>
+      <option value="profix">ProFix supplies materials</option>
+    </select>
+  </label>
+
+  <br><br>
+
+  <button onclick="generateQuote()">Get Estimate</button>
+
+  <p id="result"></p>
+
+  <br><br>
+
+  <form action="https://formspree.io/f/mdabnabb" method="POST" enctype="multipart/form-data">
     <input type="text" name="name" placeholder="Your Name" required><br><br>
     <input type="email" name="email" placeholder="Your Email" required><br><br>
     <textarea name="message" placeholder="Describe your job..." required></textarea><br><br>
 
-    <br>
     <label>Upload Photo (optional):</label><br>
-    <input type="file" name="attachment">
+    <input type="file" name="attachment"><br><br>
 
     <button type="submit">Submit Request</button>
   </form>
-  
 </section>
 
 <!-- FOOTER -->
@@ -134,3 +127,4 @@
 
 <script src="script.js"></script>
 </body>
+</html>
