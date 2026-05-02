@@ -264,3 +264,23 @@ footer {
     width: 100%;
   }
 }
+
+.logo {
+  width: 320px;
+  max-width: 90%;
+  margin-bottom: 12px;
+}
+
+.service-grid div span {
+  display: block;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.service-grid div {
+  cursor: pointer;
+}
+
+.ev button {
+  margin-top: 15px;
+}
