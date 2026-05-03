@@ -8,19 +8,32 @@
 
 <body>
 
-<button id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+<header class="top-nav">
+  <div class="brand">ProFix</div>
 
-<!-- HERO -->
+  <nav>
+    <a href="#services">What We Do</a>
+    <a href="#ev">EV Outlet</a>
+    <a href="#gallery">Our Work</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#quote">Get a Quote</a>
+  </nav>
+
+  <div class="nav-actions">
+    <a href="#service-area">Service Area</a>
+    <button id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+  </div>
+</header>
+
 <section class="hero">
-  <div class="overlay">
-    <img class="logo" src="images/builder-handymann.webp" alt="ProFix Handy Services Logo">
+  <div class="hero-content">
+    <h1>ProFix</h1>
     <p>Reliable repairs. Precision service. Your trusted local handyman.</p>
     <button onclick="scrollToQuote()">Get a Quote</button>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services">
+<section class="services" id="services">
   <h2>What We Do</h2>
 
   <div class="service-grid">
@@ -28,19 +41,20 @@
     <div onclick="selectService('plumbing')"><span>🚰</span>Plumbing</div>
     <div onclick="selectService('repairs')"><span>🛠️</span>Repairs</div>
     <div onclick="selectService('assembly')"><span>🪑</span>Assembly</div>
-    <div onclick="selectService('installation')"><span>📺</span>Installation</div>
+    <div onclick="selectService('installation')"><span>🔧</span>Maintenance & Installs</div>
   </div>
 </section>
 
-<!-- EV SECTION -->
-<section class="ev">
-  <h2>EV Charger Outlet Installation</h2>
-  <p>Home EV outlet inspections and install quotes for safe charging setup.</p>
-  <button onclick="selectService('electrical')">Request EV Quote</button>
+<section class="ev" id="ev">
+  <div class="ev-content">
+    <h2>EV Outlet Installation</h2>
+    <p>Starting at $350 for a straightforward outlet installation within 5 feet of the panel.</p>
+    <p class="fine-print">Longer runs or added complexity are quoted clearly before work begins.</p>
+    <button onclick="selectService('electrical')">Request EV Quote</button>
+  </div>
 </section>
 
-<!-- GALLERY -->
-<section class="gallery">
+<section class="gallery" id="gallery">
   <h2>Our Work</h2>
 
   <div class="gallery-grid">
@@ -50,8 +64,7 @@
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section class="reviews">
+<section class="reviews" id="reviews">
   <h2>Customer Reviews</h2>
 
   <div class="review-grid">
@@ -72,9 +85,9 @@
   </div>
 </section>
 
-<!-- QUOTE -->
 <section class="quote" id="quote">
   <h2>Get a Quote</h2>
+  <p class="quote-subtitle">No hassle. No pressure. Tell us what you need and get an estimate or a quick follow-up.</p>
 
   <select id="category">
     <option value="">Select Category</option>
@@ -82,7 +95,7 @@
     <option value="plumbing">Plumbing</option>
     <option value="repairs">Repairs</option>
     <option value="assembly">Assembly</option>
-    <option value="installation">Installation</option>
+    <option value="installation">Maintenance & Installs</option>
   </select>
 
   <select id="subcategory"></select>
@@ -104,8 +117,6 @@
 
   <p id="result"></p>
 
-  <br><br>
-
   <form action="https://formspree.io/f/mdabnabb" method="POST" enctype="multipart/form-data">
     <input type="text" name="name" placeholder="Your Name" required><br><br>
     <input type="email" name="email" placeholder="Your Email" required><br><br>
@@ -118,9 +129,23 @@
   </form>
 </section>
 
-<!-- FOOTER -->
+<section class="service-area" id="service-area">
+  <h2>Service Area</h2>
+  <p>Serving Allen, Plano, McKinney, Lucas, Frisco, Prosper, Celina, and nearby North Dallas communities.</p>
+  <p>If you are nearby, send your location and we’ll let you know if we can help.</p>
+
+  <div class="map-card">
+    <span>📍 Allen</span>
+    <span>📍 Plano</span>
+    <span>📍 McKinney</span>
+    <span>📍 Lucas</span>
+    <span>📍 Frisco</span>
+    <span>📍 Prosper</span>
+    <span>📍 Celina</span>
+  </div>
+</section>
+
 <footer>
-  <p>Service Area: Allen, Plano, McKinney, Lucas, Frisco, Prosper, Celina</p>
   <p>Hours: Mon–Fri 11am–3pm | Sat 9am–1pm</p>
   <p>Contact: profix.dfw26@gmail.com</p>
 </footer>
