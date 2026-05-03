@@ -6,13 +6,15 @@ const data = {
     },
     "EV Charger Outlet": {
       "Inspection": 125,
-      "New install": "custom"
+      "Straightforward install - up to 5 ft": 350,
+      "Install over 5 ft / added complexity": "custom"
     },
     "Lighting": {
       "Replace fixture": 125,
       "New install": "custom"
     }
   },
+
   plumbing: {
     "Faucet": {
       "Replace": 125,
@@ -23,6 +25,7 @@ const data = {
       "Replace": 200
     }
   },
+
   repairs: {
     "Drywall": {
       "Small patch": 125,
@@ -33,6 +36,7 @@ const data = {
       "Hardware replacement": 150
     }
   },
+
   assembly: {
     "Furniture": {
       "Standard assembly": 125,
@@ -43,14 +47,20 @@ const data = {
       "Large / complex assembly": "custom"
     }
   },
+
   installation: {
-    "TV Mounting": {
-      "Standard mount": 150,
-      "Large TV / special wall": "custom"
+    "Outdoor AC Condenser Cleaning": {
+      "1 outdoor unit": 169,
+      "2 outdoor units": 310,
+      "3+ outdoor units": "custom"
     },
     "Shelving / Wall Hanging": {
       "Standard install": 125,
       "Multiple items": "custom"
+    },
+    "General Maintenance": {
+      "Small task": 125,
+      "Multiple tasks": "custom"
     }
   }
 };
@@ -123,15 +133,25 @@ function generateQuote() {
   const price = data[cat][sub][det];
 
   if (price === "custom") {
-    resultEl.innerText = "Custom quote needed. Please submit the form below and we will follow up.";
+    resultEl.innerText = "Custom quote needed. Please submit the form below and we will follow up with a clear estimate.";
     return;
   }
 
-  if (materials === "profix") {
-    resultEl.innerText = `Estimated Labor: $${price}. Materials are priced separately.`;
-  } else {
-    resultEl.innerText = `Estimated Labor: $${price}.`;
+  let message = `Estimated Labor: $${price}.`;
+
+  if (sub === "EV Charger Outlet" && det === "Straightforward install - up to 5 ft") {
+    message += " Includes a straightforward outlet installation up to 5 feet from the panel. Longer runs or added complexity are quoted before work begins.";
   }
+
+  if (sub === "Outdoor AC Condenser Cleaning") {
+    message += " Includes outdoor condenser cleaning, debris removal, and basic visual check.";
+  }
+
+  if (materials === "profix") {
+    message += " Materials are priced separately.";
+  }
+
+  resultEl.innerText = message;
 }
 
 function scrollToQuote() {
