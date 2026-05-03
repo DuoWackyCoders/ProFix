@@ -14,13 +14,15 @@
   <nav>
     <a href="#services">What We Do</a>
     <a href="#ev">EV Outlet</a>
+    <a href="#condenser">AC Cleaning</a>
     <a href="#gallery">Our Work</a>
     <a href="#reviews">Reviews</a>
     <a href="#quote">Get a Quote</a>
   </nav>
 
   <div class="nav-actions">
-    <a href="#service-area">Service Area</a>
+    <a href="#about">About Me</a>
+    <a href="#service-area" title="Service Area">🌐</a>
     <button id="darkToggle" onclick="toggleDarkMode()">🌙</button>
   </div>
 </header>
@@ -54,8 +56,74 @@
   </div>
 </section>
 
-<section class="gallery" id="gallery">
-  <h2>Our Work</h2>
+  <section class="condenser" id="condenser">
+    <div class="condenser-content">
+      <h2>Outdoor AC Condenser Cleaning & Basic Check</h2>
+      <p class="section-subtitle">
+        Outdoor unit only. A thorough inside-out cleaning and basic visual check designed to help your system breathe better.
+      </p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>What’s Included</h3>
+          <ul>
+            <li>Safe power shut-off</li>
+            <li>Top grille removal with fan secured</li>
+            <li>Inside-out condenser coil cleaning</li>
+            <li>Debris removal from unit base</li>
+            <li>Light fin straightening where accessible</li>
+            <li>Reassembly and restart check</li>
+            <li>Visual check of capacitor, contactor, and fan operation</li>
+          </ul>
+        </div>
+
+        <div class="info-card warning-card">
+          <h3>Important Note</h3>
+          <p>
+            This service requires temporarily shutting down and restarting your AC system.
+            If a component is already weak or near failure, it may stop working when the system turns back on.
+            That is usually a sign the part was already near the end of its lifespan, not caused by the cleaning itself.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Not Included</h3>
+          <ul>
+            <li>Indoor coil cleaning</li>
+            <li>Refrigerant work</li>
+            <li>Electrical repairs beyond basic inspection</li>
+            <li>Major HVAC diagnostics or repair</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Recommended Schedule</h3>
+          <p>
+            At least once per year, and ideally twice per year in Texas due to heat, dust, and pollen buildup.
+          </p>
+          <ul>
+            <li>Annual cleaning: once per year</li>
+            <li>Seasonal cleaning: spring + late summer</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pricing-row">
+        <div><strong>Single Unit</strong><span>$169</span></div>
+        <div><strong>Two Units</strong><span>$155 each</span></div>
+        <div><strong>Three or More</strong><span>$135 each</span></div>
+      </div>
+
+      <p class="value-line">
+        Proper inside-out cleaning improves airflow, helps reduce system strain, and is more thorough than quick surface spray services.
+      </p>
+
+      <button onclick="selectService('installation')">Schedule Condenser Cleaning</button>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <h2>Our Work</h2>
 
   <div class="gallery-grid">
     <img src="images/builder-handymann.webp" alt="Handyman work sample">
