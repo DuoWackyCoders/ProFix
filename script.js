@@ -196,3 +196,16 @@ function revealSections() {
 
 window.addEventListener("scroll", revealSections);
 window.addEventListener("load", revealSections);
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+window.addEventListener("scroll", () => {
+  const btn = document.getElementById("backToTop");
+  if (window.scrollY > 500) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
