@@ -485,17 +485,18 @@ footer {
   }
 }
 
+/* Live Map */
 .live-map {
-  max-width: 1000px;
-  margin: 30px auto 0;
+  max-width: 900px;
+  margin: 30px auto;
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 14px 35px rgba(0,0,0,0.16);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.18);
 }
 
 .live-map iframe {
   width: 100%;
-  min-height: 420px;
+  height: 380px;
   border: 0;
 }
 
