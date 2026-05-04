@@ -1,66 +1,79 @@
 const data = {
   electrical: {
     "Outlet / Switch": {
-      "Replace existing": 125,
-      "New install": "custom"
+      "Single replacement": 125,
+      "Multiple replacements": "custom"
+    },
+    "GFCI Outlet": {
+      "Replace": 95
     },
     "EV Charger Outlet": {
-      "Inspection": 125,
-      "Straightforward install - up to 5 ft": 350,
-      "Install over 5 ft / added complexity": "custom"
+      "Inspection": 75,
+      "Up to 5 ft install": 350,
+      "Over 5 ft / complex install": "custom"
     },
     "Lighting": {
-      "Replace fixture": 125,
-      "New install": "custom"
+      "Standard fixture": 125,
+      "Complex / high ceiling": "custom"
     }
   },
 
   plumbing: {
     "Faucet": {
-      "Replace": 125,
-      "Install": 150
+      "Replace": 135,
+      "Complex install": "custom"
     },
-    "Toilet": {
-      "Repair": 125,
-      "Replace": 200
+    "Shower Cartridge": {
+      "Replace": 125
+    },
+    "Garbage Disposal": {
+      "Replace existing": 150,
+      "New install": "custom"
     }
   },
 
   repairs: {
     "Drywall": {
-      "Small patch": 125,
+      "Small patch": 100,
       "Medium repair": "custom"
     },
     "Doors": {
-      "Alignment": 125,
-      "Hardware replacement": 150
+      "Hardware replacement": 150,
+      "Alignment / adjustment": 125
+    },
+    "Drawer Repair": {
+      "Adjustment / track fix": 125
     }
   },
 
   assembly: {
     "Furniture": {
-      "Standard assembly": 125,
-      "Large / complex assembly": "custom"
+      "Standard": 125,
+      "Large / complex": 175
     },
     "Outdoor items": {
-      "Standard assembly": 150,
-      "Large / complex assembly": "custom"
+      "Standard": 175,
+      "Complex": "custom"
     }
   },
 
   installation: {
-    "Outdoor AC Condenser Cleaning": {
-      "1 outdoor unit": 169,
-      "2 outdoor units": 310,
-      "3+ outdoor units": "custom"
+    "AC Condenser Cleaning": {
+      "Single unit": 169,
+      "Two units": 310,
+      "Three or more": "custom"
     },
-    "Shelving / Wall Hanging": {
-      "Standard install": 125,
+    "Shelving": {
+      "Standard": 125,
       "Multiple items": "custom"
     },
-    "General Maintenance": {
-      "Small task": 125,
-      "Multiple tasks": "custom"
+    "Curtains / Blinds": {
+      "Standard install": 125,
+      "Multiple windows": "custom"
+    },
+    "Sprinkler Repair": {
+      "1 head repair": 125,
+      "Multiple heads": "custom"
     }
   }
 };
@@ -79,29 +92,29 @@ function resetDropdown(dropdown, text) {
 }
 
 function loadSubcategories(category) {
-  resetDropdown(subEl, "Select Subcategory");
-  resetDropdown(detailEl, "Select Detail");
+  resetDropdown(subEl, "Select Service");
+  resetDropdown(detailEl, "Select Option");
 
-  if (!category || !data[category]) return;
+  if (!data[category]) return;
 
-  Object.keys(data[category]).forEach(subcategory => {
-    const option = document.createElement("option");
-    option.value = subcategory;
-    option.textContent = subcategory;
-    subEl.appendChild(option);
+  Object.keys(data[category]).forEach(sub => {
+    let opt = document.createElement("option");
+    opt.value = sub;
+    opt.textContent = sub;
+    subEl.appendChild(opt);
   });
 }
 
-function loadDetails(category, subcategory) {
-  resetDropdown(detailEl, "Select Detail");
+function loadDetails(category, sub) {
+  resetDropdown(detailEl, "Select Option");
 
-  if (!category || !subcategory || !data[category][subcategory]) return;
+  if (!data[category][sub]) return;
 
-  Object.keys(data[category][subcategory]).forEach(detail => {
-    const option = document.createElement("option");
-    option.value = detail;
-    option.textContent = detail;
-    detailEl.appendChild(option);
+  Object.keys(data[category][sub]).forEach(detail => {
+    let opt = document.createElement("option");
+    opt.value = detail;
+    opt.textContent = detail;
+    detailEl.appendChild(opt);
   });
 }
 
@@ -126,29 +139,29 @@ function generateQuote() {
   const materials = document.getElementById("materials").value;
 
   if (!cat || !sub || !det) {
-    resultEl.innerText = "Please complete all quote selections.";
+    resultEl.innerText = "Please complete all selections.";
     return;
   }
 
   const price = data[cat][sub][det];
 
   if (price === "custom") {
-    resultEl.innerText = "Custom quote needed. Please submit the form below and we will follow up with a clear estimate.";
+    resultEl.innerText = "This job depends on layout and conditions. Submit request and we’ll provide a clear estimate.";
     return;
   }
 
   let message = `Estimated Labor: $${price}.`;
 
-  if (sub === "EV Charger Outlet" && det === "Straightforward install - up to 5 ft") {
-    message += " Includes a straightforward outlet installation up to 5 feet from the panel. Longer runs or added complexity are quoted before work begins.";
+  if (sub === "EV Charger Outlet") {
+    message += " Includes standard installation up to 5 ft from panel. Additional distance or complexity will be reviewed before work.";
   }
 
-  if (sub === "Outdoor AC Condenser Cleaning") {
-    message += " Includes outdoor condenser cleaning, debris removal, and basic visual check.";
+  if (sub === "AC Condenser Cleaning") {
+    message += " Includes full outdoor cleaning and basic visual check of components.";
   }
 
   if (materials === "profix") {
-    message += " Materials are priced separately.";
+    message += " Materials are billed separately.";
   }
 
   resultEl.innerText = message;
@@ -160,9 +173,8 @@ function scrollToQuote() {
 
 function toggleDarkMode() {
   document.body.classList.toggle("dark");
-
-  const btn = document.getElementById("darkToggle");
-  btn.innerText = document.body.classList.contains("dark") ? "☀️" : "🌙";
+  document.getElementById("darkToggle").innerText =
+    document.body.classList.contains("dark") ? "☀️" : "🌙";
 }
 
 function selectService(category) {
@@ -184,18 +196,3 @@ function revealSections() {
 
 window.addEventListener("scroll", revealSections);
 window.addEventListener("load", revealSections);
-window.dispatchEvent(new Event("scroll"));
-
-const reviewContainer = document.querySelector(".review-grid");
-let scrollAmount = 0;
-
-setInterval(() => {
-  if (reviewContainer && reviewContainer.scrollWidth > reviewContainer.clientWidth) {
-    scrollAmount += 1;
-    reviewContainer.scrollLeft = scrollAmount;
-
-    if (scrollAmount >= reviewContainer.scrollWidth - reviewContainer.clientWidth) {
-      scrollAmount = 0;
-    }
-  }
-}, 60);
