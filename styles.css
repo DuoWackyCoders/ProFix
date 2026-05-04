@@ -349,6 +349,13 @@ button:hover {
   box-shadow: 0 16px 38px rgba(0,0,0,0.18);
 }
 
+.stars {
+  color: #ff6a00;
+  font-size: 18px;
+  margin: 8px 0;
+  letter-spacing: 2px;
+}
+
 /* QUOTE */
 .quote {
   padding: 70px 20px;
@@ -453,42 +460,104 @@ footer {
 }
 
 /* MOBILE */
+/* MOBILE */
 @media (max-width: 760px) {
-  .top-nav nav {
-    display: none;
+  .top-nav {
+    height: 58px;
+    padding: 0 14px;
   }
 
-  .top-nav {
-    padding: 0 16px;
+  .brand {
+    font-size: 24px;
+  }
+
+  .brand-bolt {
+    font-size: 22px;
+  }
+
+  .top-nav nav {
+    display: none;
   }
 
   .nav-actions a {
     display: none;
   }
 
+  #darkToggle {
+    font-size: 16px;
+    padding: 6px 9px;
+  }
+
   .hero {
-    height: 75vh;
-    min-height: 480px;
-    padding-top: 95px;
+    height: 58vh;
+    min-height: 390px;
+    padding-top: 90px;
+    background-position: left center;
   }
 
   .hero-content h1 {
-    font-size: 42px;
+    font-size: 38px;
   }
 
   .hero-content p {
-    font-size: 18px;
+    font-size: 17px;
+    max-width: 340px;
     padding: 0 16px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .service-grid {
+  button {
+    padding: 12px 22px;
+  }
+
+  .services,
+  .ev,
+  .condenser,
+  .gallery,
+  .reviews,
+  .quote,
+  .service-area,
+  .about {
+    padding: 45px 16px;
+  }
+
+  .services h2,
+  .gallery h2,
+  .reviews h2,
+  .quote h2,
+  .service-area h2,
+  .condenser h2,
+  .ev h2 {
+    font-size: 28px;
+  }
+
+  .service-grid,
+  .info-grid,
+  .pricing-row,
+  .gallery-grid,
+  .before-after {
     grid-template-columns: 1fr;
+  }
+
+  .review-card {
+    min-width: 85%;
   }
 
   .quote select,
   .quote input,
   .quote textarea {
     width: 100%;
+    font-size: 16px;
+  }
+
+  .live-map iframe {
+    height: 320px;
+  }
+
+  #backToTop {
+    right: 16px;
+    bottom: 16px;
   }
 }
 
@@ -578,3 +647,20 @@ footer {
   }
 }
 
+#backToTop {
+  display: none;
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1000;
+  padding: 12px 16px;
+  border-radius: 50%;
+  background: #ff6a00;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+
+.brand {
+  line-height: 1;
+}
