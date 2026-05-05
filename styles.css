@@ -321,6 +321,7 @@ button:hover {
   box-shadow: 0 10px 26px rgba(0,0,0,0.12);
 }
 
+
 /* REVIEWS */
 /* REVIEWS */
 .reviews {
@@ -333,14 +334,21 @@ button:hover {
 .review-carousel {
   max-width: 1000px;
   margin: 25px auto 0;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.review-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .review-track {
   display: flex;
   gap: 22px;
   width: max-content;
-  animation: reviewLoop 28s linear infinite;
+  animation: reviewLoop 35s linear infinite;
 }
 
 .review-track:hover {
@@ -394,10 +402,11 @@ button:hover {
   opacity: 0.35;
 }
 
-.review-dots span:nth-child(2) {
+.review-dots span.active {
   background: #ff6a00;
   opacity: 1;
 }
+
 /* QUOTE */
 .quote {
   padding: 70px 20px;
@@ -514,8 +523,8 @@ footer {
     padding: 0 14px;
   }
 
-  .brand {
-    font-size: 24px;
+  .top-nav .brand {
+  font-size: 26px !important;
   }
 
   .brand-bolt {
@@ -709,4 +718,13 @@ footer {
   box-shadow: 0 8px 22px rgba(0,0,0,0.25);
 }
 
+.top-nav .brand {
+  font-size: 34px !important;
+  font-weight: 900 !important;
+  letter-spacing: 1.5px;
+}
 
+.top-nav .brand .brand-bolt {
+  font-size: 30px !important;
+  color: #ff6a00;
+}
