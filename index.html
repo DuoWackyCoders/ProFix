@@ -32,7 +32,7 @@
 
 <section class="hero">
   <div class="hero-content">
-    <h1>ProFix</h1>
+    <h1>Pro<span class="hero-bolt">⚡</span>Fix</h1>
     <p>Reliable repairs. Precision service. Your trusted local handyman.</p>
     <button onclick="scrollToQuote()">Get a Quote</button>
   </div>
@@ -55,7 +55,19 @@
     <h2>EV Outlet Installation</h2>
     <p>Starting at $350 for a straightforward outlet installation within 5 feet of the panel.</p>
     <p class="fine-print">Longer runs or added complexity are quoted clearly before work begins.</p>
-    <button onclick="selectService('electrical')">Request EV Quote</button>
+
+    <div class="before-after ev-gallery">
+      <div>
+        <img src="images/EV-outlet-install.png" alt="EV outlet installation in progress">
+        <p>EV Outlet Install</p>
+      </div>
+    <div>
+      <img src="images/EV-outlet-complete.jpg" alt="Completed EV outlet installation">
+      <p>Completed Outlet</p>
+    </div>
+  </div>
+
+<button onclick="selectService('electrical')">Request EV Quote</button>
   </div>
 </section>
 
@@ -140,22 +152,36 @@
   <section class="gallery" id="gallery">
     <h2>Our Work</h2>
 
-  <div class="gallery-grid">
-    <img src="images/Recess-lights01.png" alt="Recess light install">
-    <img src="images/Recess-lights02.png" alt="Recess light install">
-     <img src="images/fan-swap.jpg" alt="Fan Swap With New Modern Light">
-    <img src="images/fan-swap-light.jpg" alt="Fan Swap With New Modern Light">
-    <img src="images/fan-swap-light01.jpg" alt="Light Install">
-    <img src="images/old-shower.jpg" alt="Old Shower Faucets">
-    <img src="images/new-shower.jpg" alt="New Shower Faucets">
-  </div>
-</section>
+    <div class="gallery-carousel">
+      <div class="gallery-track">
 
-<section class="reviews" id="reviews">
-  <h2>Customer Reviews</h2>
+        <img src="images/builder-handymann.webp" alt="Handyman work sample">
+        <img src="images/EV-outlet-install.png" alt="EV outlet installation">
+        <img src="images/EV-outlet-complete.jpg" alt="Completed EV outlet">
+        <img src="images/dirty-condenser.png" alt="Dirty condenser">
+        <img src="images/clean-condenser.png" alt="Clean condenser">
 
-  <div class="review-carousel">
-  <div class="review-track">
+        <!-- duplicates for smooth loop -->
+        <img src="images/builder-handymann.webp" alt="Handyman work sample">
+        <img src="images/EV-outlet-install.png" alt="EV outlet installation">
+
+      </div>
+    </div>
+
+    <div class="gallery-dots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <h2>Customer Reviews</h2>
+
+    <div class="review-carousel">
+    <div class="review-track">
 
     <div class="review-card">
       <strong>John D.</strong>
