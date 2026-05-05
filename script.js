@@ -209,3 +209,14 @@ window.addEventListener("scroll", () => {
     btn.style.display = "none";
   }
 });
+
+const reviewDots = document.querySelectorAll(".review-dots span");
+let activeReviewDot = 0;
+
+setInterval(() => {
+  if (reviewDots.length > 0) {
+    reviewDots.forEach(dot => dot.classList.remove("active"));
+    activeReviewDot = (activeReviewDot + 1) % reviewDots.length;
+    reviewDots[activeReviewDot].classList.add("active");
+  }
+}, 5000);
