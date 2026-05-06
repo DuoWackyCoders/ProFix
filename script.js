@@ -1,79 +1,91 @@
 const data = {
   electrical: {
     "Outlet / Switch": {
-      "Single replacement": 125,
-      "Multiple replacements": "custom"
+      "1–5 standard outlets or switches": 125,
+      "6–15 outlets or switches": "custom_outlet_6_15",
+      "16–30 outlets or switches": "custom_outlet_16_30",
+      "30+ outlets or switches": "custom_outlet_30_plus"
     },
     "GFCI Outlet": {
-      "Replace": 95
+      "Replace existing GFCI": 95
     },
     "EV Charger Outlet": {
-      "Inspection": 75,
-      "Up to 5 ft install": 350,
-      "Over 5 ft / complex install": "custom"
+      "Inspection only": 75,
+      "Standard install within 5 ft": 350,
+      "Install beyond 5 ft or added complexity": "custom"
     },
     "Lighting": {
-      "Standard fixture": 125,
-      "Complex / high ceiling": "custom"
+      "Standard fixture replacement": 125,
+      "Large, high, or complex fixture": "custom"
     }
   },
 
   plumbing: {
     "Faucet": {
-      "Replace": 135,
+      "Standard replacement": 135,
       "Complex install": "custom"
     },
     "Shower Cartridge": {
-      "Replace": 125
+      "Standard replacement": 125
     },
     "Garbage Disposal": {
-      "Replace existing": 150,
-      "New install": "custom"
+      "Standard replacement": 150,
+      "New install": 250,
+      "Added plumbing or electrical modifications": "custom"
     }
   },
 
   repairs: {
     "Drywall": {
-      "Small patch": 100,
+      "Small patch": 125,
       "Medium repair": "custom"
     },
     "Doors": {
-      "Hardware replacement": 150,
+      "Hardware replacement - first door": 150,
+      "Additional door hardware": 75,
       "Alignment / adjustment": 125
     },
     "Drawer Repair": {
-      "Adjustment / track fix": 125
+      "Track or soft-close adjustment": 125
     }
   },
 
   assembly: {
     "Furniture": {
-      "Standard": 125,
-      "Large / complex": 175
+      "Standard assembly": 125,
+      "Large or complex assembly": 175
     },
-    "Outdoor items": {
-      "Standard": 175,
-      "Complex": "custom"
+    "Outdoor Items": {
+      "Standard assembly": 175,
+      "Large or complex item": "custom"
     }
   },
 
   installation: {
     "AC Condenser Cleaning": {
-      "Single unit": 169,
-      "Two units": 310,
-      "Three or more": "custom"
+      "Single condenser": 169,
+      "Two condensers": 310,
+      "Three or more condensers": "custom"
     },
     "Shelving": {
-      "Standard": 125,
-      "Multiple items": "custom"
+      "Standard install": 125,
+      "Multiple shelves or complex layout": "custom"
     },
     "Curtains / Blinds": {
       "Standard install": 125,
       "Multiple windows": "custom"
     },
+    "Sprinkler Controller": {
+      "Replace existing controller": 175
+    },
     "Sprinkler Repair": {
-      "1 head repair": 125,
-      "Multiple heads": "custom"
+      "Sprinkler head replacement": 125,
+      "Leaking sprinkler head replacement": 125,
+      "Exposed sprinkler pipe repair": 175
+    },
+    "General Maintenance": {
+      "Small task": 125,
+      "Hourly work": "hourly"
     }
   }
 };
@@ -98,7 +110,7 @@ function loadSubcategories(category) {
   if (!data[category]) return;
 
   Object.keys(data[category]).forEach(sub => {
-    let opt = document.createElement("option");
+    const opt = document.createElement("option");
     opt.value = sub;
     opt.textContent = sub;
     subEl.appendChild(opt);
@@ -108,10 +120,10 @@ function loadSubcategories(category) {
 function loadDetails(category, sub) {
   resetDropdown(detailEl, "Select Option");
 
-  if (!data[category][sub]) return;
+  if (!data[category] || !data[category][sub]) return;
 
   Object.keys(data[category][sub]).forEach(detail => {
-    let opt = document.createElement("option");
+    const opt = document.createElement("option");
     opt.value = detail;
     opt.textContent = detail;
     detailEl.appendChild(opt);
@@ -120,16 +132,16 @@ function loadDetails(category, sub) {
 
 categoryEl.addEventListener("change", () => {
   loadSubcategories(categoryEl.value);
-  resultEl.innerText = "";
+  resultEl.innerHTML = "";
 });
 
 subEl.addEventListener("change", () => {
   loadDetails(categoryEl.value, subEl.value);
-  resultEl.innerText = "";
+  resultEl.innerHTML = "";
 });
 
 detailEl.addEventListener("change", () => {
-  resultEl.innerText = "";
+  resultEl.innerHTML = "";
 });
 
 function generateQuote() {
@@ -139,32 +151,62 @@ function generateQuote() {
   const materials = document.getElementById("materials").value;
 
   if (!cat || !sub || !det) {
-    resultEl.innerText = "Please complete all selections.";
+    resultEl.innerHTML = "Please complete all quote selections.";
     return;
   }
 
   const price = data[cat][sub][det];
+  let message = "";
 
   if (price === "custom") {
-    resultEl.innerText = "This job depends on layout and conditions. Submit request and we’ll provide a clear estimate.";
-    return;
+    message = "This service needs a quick review before pricing. Submit the request below with details and photos, and we’ll follow up with a clear estimate.";
+  } else if (price === "hourly") {
+    message = "Estimated labor: $85/hr with a $125 minimum service call.";
+  } else if (price === "custom_outlet_6_15") {
+    message = "Estimated labor: $125 minimum plus $8 per outlet/switch for 6–15 standard replacements.";
+  } else if (price === "custom_outlet_16_30") {
+    message = "Estimated labor: $125 minimum plus $7 per outlet/switch for 16–30 standard replacements.";
+  } else if (price === "custom_outlet_30_plus") {
+    message = "Estimated labor: $125 minimum plus $6 per outlet/switch for 30+ standard replacements.";
+  } else {
+    message = `Estimated labor: $${price}.`;
   }
 
-  let message = `Estimated Labor: $${price}.`;
+  if (sub === "Outlet / Switch") {
+    message += " Standard pricing assumes existing boxes and wiring are usable. Damaged boxes, unsafe wiring, burned connections, loose wiring, or other pre-existing issues will be reviewed before additional work is performed. Small corrective repairs may add $25+ depending on condition.";
+  }
 
   if (sub === "EV Charger Outlet") {
-    message += " Includes standard installation up to 5 ft from panel. Additional distance or complexity will be reviewed before work.";
+    message += " Standard install includes a straightforward outlet installation within 5 feet of the panel. Longer distance or added complexity is reviewed before work begins.";
+  }
+
+  if (sub === "Shower Cartridge") {
+    message += " Some cartridges may be stuck, damaged, or require additional valve work. Any added work is reviewed before continuing.";
+  }
+
+  if (sub === "Garbage Disposal") {
+    message += " Electrical, plumbing, or cabinet modifications are quoted separately. Add-ons are usually handled in $50 increments when simple.";
   }
 
   if (sub === "AC Condenser Cleaning") {
-    message += " Includes full outdoor cleaning and basic visual check of components.";
+    message += " Includes outdoor condenser cleaning, debris removal, and basic visual check.";
+  }
+
+  if (sub === "Sprinkler Controller") {
+    message += " Includes replacement using existing wiring and basic zone setup/testing. Existing wiring, valves, solenoids, zones, and irrigation components must be functional. If the system cannot be tested before replacement, ProFix is not responsible for pre-existing sprinkler issues discovered after controller replacement.";
+  }
+
+  if (sub === "Sprinkler Repair") {
+    message += " Pricing includes minimum service call. Additional sprinkler heads are typically $75 each. Exposed pipe repair starts at $175 depending on access and condition.";
   }
 
   if (materials === "profix") {
-    message += " Materials are billed separately.";
+    message += " Materials are priced separately.";
   }
 
-  resultEl.innerText = message;
+  message += "<br><br><strong>Next step:</strong> Submit the form below with photos/details so we can confirm scope and schedule.";
+
+  resultEl.innerHTML = message;
 }
 
 function scrollToQuote() {
@@ -203,20 +245,7 @@ function scrollToTop() {
 
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("backToTop");
-  if (window.scrollY > 500) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
+  if (!btn) return;
+
+  btn.style.display = window.scrollY > 500 ? "block" : "none";
 });
-
-const reviewDots = document.querySelectorAll(".review-dots span");
-let activeReviewDot = 0;
-
-setInterval(() => {
-  if (reviewDots.length > 0) {
-    reviewDots.forEach(dot => dot.classList.remove("active"));
-    activeReviewDot = (activeReviewDot + 1) % reviewDots.length;
-    reviewDots[activeReviewDot].classList.add("active");
-  }
-}, 5000);
