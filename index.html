@@ -235,9 +235,17 @@
 </div>
 </section>
 
+  <!-- Quote Section -->
 <section class="quote" id="quote">
   <h2>Get a Quote</h2>
-  <p class="quote-subtitle">No hassle. No pressure. Tell us what you need and get an estimate or a quick follow-up.</p>
+  <p class="quote-subtitle">
+    No hassle. No pressure. Get an upfront labor estimate for common services, or submit details for a clear follow-up.
+  </p>
+
+  <div class="pricing-note">
+    <strong>Transparent Pricing:</strong>
+    Estimates are based on standard conditions. Final pricing may change if access issues, damaged parts, unsafe wiring, hidden conditions, or scope changes are found. Any changes are reviewed before work continues.
+  </div>
 
   <select id="category">
     <option value="">Select Category</option>
@@ -270,9 +278,10 @@
   <form action="https://formspree.io/f/mdabnabb" method="POST" enctype="multipart/form-data">
     <input type="text" name="name" placeholder="Your Name" required><br><br>
     <input type="email" name="email" placeholder="Your Email" required><br><br>
+    <input type="text" name="location" placeholder="City / Area" required><br><br>
     <textarea name="message" placeholder="Describe your job..." required></textarea><br><br>
 
-    <label>Upload Photo (optional):</label><br>
+    <label>Upload Photo (optional but helpful):</label><br>
     <input type="file" name="attachment"><br><br>
 
     <button type="submit">Submit Request</button>
