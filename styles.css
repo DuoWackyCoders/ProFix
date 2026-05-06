@@ -48,7 +48,7 @@ body {
 
 .brand-bolt {
   color: #ff6a00;
-  font-size: 30px;
+  font-size: 32px;
   margin: 0 3px;
 }
 
@@ -97,20 +97,22 @@ section.show {
 }
 
 /* HERO */
+/* HERO */
 .hero {
-  height: 72vh;
-  min-height: 560px;
+  margin-top: 68px;
+  height: 68vh;
+  min-height: 520px;
   background-image: url("images/Sam-ProFix.png");
   background-size: contain;
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
   background-color: #f5f1ea;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   text-align: center;
-  padding-top: 95px;
-} 
+  padding-top: 55px;
+}
 
 .hero-content {
   color: white;
@@ -669,11 +671,12 @@ footer {
   }
 
   .hero {
-  height: 60vh;
-  min-height: 420px;
-  padding-top: 90px;
+  margin-top: 68px;
+  height: 58vh;
+  min-height: 390px;
+  padding-top: 45px;
   background-size: contain;
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 
@@ -749,14 +752,4 @@ footer {
   #backToTop {
     bottom: 16px;
   }
-}
-
-/* FINAL NAV BRAND FIX */
-.top-nav .brand {
-  font-size: 34px !important;
-  font-weight: 900 !important;
-}
-
-.top-nav .brand-bolt {
-  font-size: 32px !important;
 }
