@@ -763,3 +763,19 @@ footer {
 .top-nav .brand-bolt {
   font-size: 32px !important;
 }
+
+.pricing-note {
+  max-width: 760px;
+  margin: 0 auto 25px;
+  background: #f7f7f7;
+  border-left: 5px solid #ff6a00;
+  padding: 18px;
+  border-radius: 14px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.dark .pricing-note {
+  background: #222;
+}
