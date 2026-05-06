@@ -744,3 +744,13 @@ footer {
     bottom: 16px;
   }
 }
+
+/* FINAL NAV BRAND FIX */
+.top-nav .brand {
+  font-size: 38px !important;
+  font-weight: 900 !important;
+}
+
+.top-nav .brand-bolt {
+  font-size: 34px !important;
+}
