@@ -78,10 +78,11 @@ const data = {
     "Sprinkler Controller": {
       "Replace existing controller": 175
     },
-    "Sprinkler Repair": {
-      "Sprinkler head replacement": 125,
-      "Leaking sprinkler head replacement": 125,
-      "Exposed sprinkler pipe repair": 175
+   "Sprinkler Repair": {
+    "Sprinkler head replacement": 125,
+    "Sprinkler head adjustment / raise": 125,
+    "Leaking sprinkler head replacement": 125,
+    "Exposed sprinkler pipe repair": 175
     },
     "General Maintenance": {
       "Small task": 125,
@@ -176,8 +177,12 @@ function generateQuote() {
     message += " Standard pricing assumes existing boxes and wiring are usable. Damaged boxes, unsafe wiring, burned connections, loose wiring, or other pre-existing issues will be reviewed before additional work is performed. Small corrective repairs may add $25+ depending on condition.";
   }
 
-  if (sub === "EV Charger Outlet") {
-    message += " Standard install includes a straightforward outlet installation within 5 feet of the panel. Longer distance or added complexity is reviewed before work begins.";
+  if (sub === "EV Charger Outlet" && det === "Inspection only") {
+  message += " Inspection includes a basic visual review of the existing outlet/setup. If additional service is needed, the work will be reviewed and quoted before anything is performed.";
+  }
+
+if (sub === "EV Charger Outlet" && det === "Standard install within 5 ft") {
+  message += " Standard install includes a straightforward outlet installation within 5 feet of the panel. Longer distance or added complexity is reviewed before work begins.";
   }
 
   if (sub === "Shower Cartridge") {
@@ -197,7 +202,7 @@ function generateQuote() {
   }
 
   if (sub === "Sprinkler Repair") {
-    message += " Pricing includes minimum service call. Additional sprinkler heads are typically $75 each. Exposed pipe repair starts at $175 depending on access and condition.";
+  message += " Pricing includes the minimum service call. Additional sprinkler heads are typically $75 each. Exposed pipe repair starts at $175 depending on access and condition. If additional issues are found, they will be reviewed and quoted for approval before work is performed.";
   }
 
   if (materials === "profix") {
