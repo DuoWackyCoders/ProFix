@@ -789,3 +789,45 @@ footer {
   border-radius: 22px;
   box-shadow: 0 14px 35px rgba(0,0,0,0.14);
 }
+
+/* MOBILE HERO FIX */
+@media (max-width: 768px) {
+
+  .hero {
+    height: 72vh;
+    min-height: 520px;
+    background-position: center top;
+  }
+
+  .hero-content {
+    top: 55px;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    max-width: 88%;
+    width: 88%;
+
+    padding: 14px 16px;
+
+    background: rgba(255,255,255,0.14);
+    backdrop-filter: blur(1px);
+  }
+
+  .hero-content h1 {
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+    line-height: 1.35;
+    margin-bottom: 18px;
+  }
+
+  .hero-content .btn {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
