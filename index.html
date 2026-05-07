@@ -271,32 +271,34 @@
   <p id="result"></p>
 
   <form action="https://formspree.io/f/mdabnabb" method="POST">
-    <input type="hidden" name="selected_category" id="selectedCategory">
-    <input type="hidden" name="selected_service" id="selectedService">
-    <input type="hidden" name="selected_option" id="selectedOption">
-    <input type="hidden" name="materials_choice" id="selectedMaterials">
-    <input type="hidden" name="estimated_result" id="estimatedResult">
+  <input type="hidden" name="_subject" value="New ProFix Service Request">
 
-    <input type="text" name="name" placeholder="Your Name" required><br><br>
-    <input type="email" name="email" placeholder="Your Email" required><br><br>
-    <input type="text" name="location" placeholder="City / Area" required><br><br>
+  <input type="hidden" name="selected_category" id="selectedCategory">
+  <input type="hidden" name="selected_service" id="selectedService">
+  <input type="hidden" name="selected_option" id="selectedOption">
+  <input type="hidden" name="materials_choice" id="selectedMaterials">
+  <input type="hidden" name="estimated_result" id="estimatedResult">
 
-    <select name="preferred_timing" required>
-      <option value="">Preferred Timing</option>
-      <option value="This week">This week</option>
-      <option value="Next week">Next week</option>
-      <option value="Flexible">Flexible</option>
-    </select><br><br>
+  <input type="text" name="name" placeholder="Your Name" required><br><br>
+  <input type="email" name="email" placeholder="Your Email" required><br><br>
+  <input type="text" name="location" placeholder="City / Area" required><br><br>
 
-    <textarea name="message" placeholder="Describe your job, timing needs, or any important details..." required></textarea><br><br>
+  <select name="preferred_timing" required>
+    <option value="">Preferred Timing</option>
+    <option value="This week">This week</option>
+    <option value="Next week">Next week</option>
+    <option value="Flexible">Flexible</option>
+  </select><br><br>
 
-    <p class="photo-note">
-      Photos are helpful. After you submit the request, you can reply to our email with photos of the work area.
-    </p>
+  <textarea name="message" placeholder="Describe your job, timing needs, or any important details..." required></textarea><br><br>
 
-    <button type="submit">Submit Request</button>
-    <button type="reset">Clear Form</button>
-  </form>
+  <p class="photo-note">
+    Photos are helpful. After you submit the request, you can reply to our email with photos of the work area.
+  </p>
+
+  <button type="submit">Submit Request</button>
+  <button type="reset">Clear Form</button>
+</form>
 </section>
 
 <section class="service-area" id="service-area">
