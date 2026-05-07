@@ -247,6 +247,10 @@
     Estimates are based on standard conditions. Final pricing may change if access issues, damaged parts, unsafe wiring, hidden conditions, or scope changes are found. Any changes are reviewed before work continues.
   </div>
 
+  <p class="quote-helper">
+    After submitting, we’ll review your request and send available time options. Service is scheduled only after availability is confirmed.
+  </p>
+
   <select id="category">
     <option value="">Select Category</option>
     <option value="electrical">Electrical</option>
@@ -276,10 +280,24 @@
   <p id="result"></p>
 
   <form action="https://formspree.io/f/mdabnabb" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="selected_category" id="selectedCategory">
+    <input type="hidden" name="selected_service" id="selectedService">
+    <input type="hidden" name="selected_option" id="selectedOption">
+    <input type="hidden" name="materials_choice" id="selectedMaterials">
+    <input type="hidden" name="estimated_result" id="estimatedResult">
+
     <input type="text" name="name" placeholder="Your Name" required><br><br>
     <input type="email" name="email" placeholder="Your Email" required><br><br>
     <input type="text" name="location" placeholder="City / Area" required><br><br>
-    <textarea name="message" placeholder="Describe your job..." required></textarea><br><br>
+
+    <select name="preferred_timing" required>
+      <option value="">Preferred Timing</option>
+      <option value="This week">This week</option>
+      <option value="Next week">Next week</option>
+      <option value="Flexible">Flexible</option>
+    </select><br><br>
+
+    <textarea name="message" placeholder="Describe your job, timing needs, or any important details..." required></textarea><br><br>
 
     <label>Upload Photo (optional but helpful):</label><br>
     <input type="file" name="attachment"><br><br>
