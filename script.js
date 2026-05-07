@@ -7,7 +7,11 @@ const data = {
       "30+ outlets or switches": "custom_outlet_30_plus"
     },
     "GFCI Outlet": {
-      "Replace existing GFCI": 95
+    "Test / troubleshoot": 125,
+    "Replace existing GFCI": 95
+    },
+    "Electrical Service": {
+    "General electrical review": "hourly"
     },
     "EV Charger Outlet": {
       "Inspection only": 75,
@@ -177,11 +181,11 @@ function generateQuote() {
   }
 
   if (sub === "Outlet / Switch") {
-    message += " Assumes existing wiring and boxes are usable. Damaged boxes, unsafe wiring, burned connections, loose wiring, or other issues will be reviewed before additional work is performed.";
+    message += " Assumes existing wiring and boxes are usable. Damaged boxes, unsafe wiring, burned connections, loose wiring, or other issues may require additional cost. Any added work will be reviewed and approved before it is performed.";
   }
 
   if (sub === "EV Charger Outlet" && det === "Inspection only") {
-    message += " Includes a visual review of the outlet/setup. If service is needed, a clear quote will be provided before any work is done.";
+    message += " Includes visual inspection and basic voltage testing of the existing outlet/setup. If service or correction is needed, a clear quote will be provided before any work is done.";
   }
 
   if (sub === "EV Charger Outlet" && det === "Standard install within 5 ft") {
