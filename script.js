@@ -163,7 +163,7 @@ function generateQuote() {
   let message = "";
 
   if (price === "custom") {
-    message = "This service needs a quick review before pricing. Submit details and photos below and we’ll follow up with a clear estimate.";
+    message = "This service needs a quick review before pricing. Submit details below and we’ll follow up with a clear estimate.";
   } else if (price === "hourly") {
     message = "Estimated labor: $85/hr with a $125 minimum service call.";
   } else if (price === "custom_outlet_6_15") {
@@ -212,7 +212,9 @@ function generateQuote() {
 
   message += `
     <br><br>
-    <strong>Next step:</strong> Submit your request below with photos and preferred timing.
+    <strong>Next step:</strong> Submit your request below with your preferred timing.
+    <br>
+    Photos are helpful. After submitting, you can reply to our email with photos of the work area.
     <br>
     We’ll review the request and confirm availability before scheduling.
   `;
