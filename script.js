@@ -78,11 +78,11 @@ const data = {
     "Sprinkler Controller": {
       "Replace existing controller": 175
     },
-   "Sprinkler Repair": {
-    "Sprinkler head replacement": 125,
-    "Sprinkler head adjustment / raise": 125,
-    "Leaking sprinkler head replacement": 125,
-    "Exposed sprinkler pipe repair": 175
+    "Sprinkler Repair": {
+      "Sprinkler head replacement": 125,
+      "Sprinkler head adjustment / raise": 125,
+      "Leaking sprinkler head replacement": 125,
+      "Exposed sprinkler pipe repair": 175
     },
     "General Maintenance": {
       "Small task": 125,
@@ -134,15 +134,18 @@ function loadDetails(category, sub) {
 categoryEl.addEventListener("change", () => {
   loadSubcategories(categoryEl.value);
   resultEl.innerHTML = "";
+  updateHiddenQuoteFields("");
 });
 
 subEl.addEventListener("change", () => {
   loadDetails(categoryEl.value, subEl.value);
   resultEl.innerHTML = "";
+  updateHiddenQuoteFields("");
 });
 
 detailEl.addEventListener("change", () => {
   resultEl.innerHTML = "";
+  updateHiddenQuoteFields("");
 });
 
 function generateQuote() {
@@ -152,7 +155,7 @@ function generateQuote() {
   const materials = document.getElementById("materials").value;
 
   if (!cat || !sub || !det) {
-    resultEl.innerHTML = "Please complete all quote selections.";
+    resultEl.innerHTML = "Please complete all selections.";
     return;
   }
 
@@ -160,58 +163,75 @@ function generateQuote() {
   let message = "";
 
   if (price === "custom") {
-    message = "This service needs a quick review before pricing. Submit the request below with details and photos, and we’ll follow up with a clear estimate.";
+    message = "This service needs a quick review before pricing. Submit details and photos below and we’ll follow up with a clear estimate.";
   } else if (price === "hourly") {
     message = "Estimated labor: $85/hr with a $125 minimum service call.";
   } else if (price === "custom_outlet_6_15") {
-    message = "Estimated labor: $125 minimum plus $8 per outlet/switch for 6–15 standard replacements.";
+    message = "Estimated labor: $125 minimum plus $8 per outlet/switch, 6–15 total.";
   } else if (price === "custom_outlet_16_30") {
-    message = "Estimated labor: $125 minimum plus $7 per outlet/switch for 16–30 standard replacements.";
+    message = "Estimated labor: $125 minimum plus $7 per outlet/switch, 16–30 total.";
   } else if (price === "custom_outlet_30_plus") {
-    message = "Estimated labor: $125 minimum plus $6 per outlet/switch for 30+ standard replacements.";
+    message = "Estimated labor: $125 minimum plus $6 per outlet/switch, 30+ total.";
   } else {
     message = `Estimated labor: $${price}.`;
   }
 
   if (sub === "Outlet / Switch") {
-    message += " Standard pricing assumes existing boxes and wiring are usable. Damaged boxes, unsafe wiring, burned connections, loose wiring, or other pre-existing issues will be reviewed before additional work is performed. Small corrective repairs may add $25+ depending on condition.";
+    message += " Assumes existing wiring and boxes are usable. Damaged boxes, unsafe wiring, burned connections, loose wiring, or other issues will be reviewed before additional work is performed.";
   }
 
   if (sub === "EV Charger Outlet" && det === "Inspection only") {
-  message += " Inspection includes a basic visual review of the existing outlet/setup. If additional service is needed, the work will be reviewed and quoted before anything is performed.";
+    message += " Includes a visual review of the outlet/setup. If service is needed, a clear quote will be provided before any work is done.";
   }
 
-if (sub === "EV Charger Outlet" && det === "Standard install within 5 ft") {
-  message += " Standard install includes a straightforward outlet installation within 5 feet of the panel. Longer distance or added complexity is reviewed before work begins.";
-  }
-
-  if (sub === "Shower Cartridge") {
-    message += " Some cartridges may be stuck, damaged, or require additional valve work. Any added work is reviewed before continuing.";
+  if (sub === "EV Charger Outlet" && det === "Standard install within 5 ft") {
+    message += " Standard install assumes a straightforward setup within 5 feet of the panel. Added distance or complexity will be reviewed first.";
   }
 
   if (sub === "Garbage Disposal") {
-    message += " Electrical, plumbing, or cabinet modifications are quoted separately. Add-ons are usually handled in $50 increments when simple.";
+    message += " Electrical or plumbing modifications are quoted separately.";
   }
 
   if (sub === "AC Condenser Cleaning") {
-    message += " Includes outdoor condenser cleaning, debris removal, and basic visual check.";
+    message += " Includes outdoor condenser cleaning, debris removal, and a basic visual check.";
   }
 
   if (sub === "Sprinkler Controller") {
-    message += " Includes replacement using existing wiring and basic zone setup/testing. Existing wiring, valves, solenoids, zones, and irrigation components must be functional. If the system cannot be tested before replacement, ProFix is not responsible for pre-existing sprinkler issues discovered after controller replacement.";
+    message += " Includes replacement using existing wiring and basic setup. If system cannot be tested prior, pre-existing issues are not assumed as part of this service.";
   }
 
   if (sub === "Sprinkler Repair") {
-  message += " Pricing includes the minimum service call. Additional sprinkler heads are typically $75 each. Exposed pipe repair starts at $175 depending on access and condition. If additional issues are found, they will be reviewed and quoted for approval before work is performed.";
+    message += " Includes minimum service call. Additional heads are typically $75 each. Pipe repair starts at $175. Any additional issues will be reviewed before work continues.";
   }
 
   if (materials === "profix") {
     message += " Materials are priced separately.";
   }
 
-  message += "<br><br><strong>Next step:</strong> Submit the form below with photos/details so we can confirm scope and schedule.";
+  const cleanMessage = message.replace(/<br>/g, " ").replace(/<[^>]*>/g, "");
+
+  message += `
+    <br><br>
+    <strong>Next step:</strong> Submit your request below with photos and preferred timing.
+    <br>
+    We’ll review the request and confirm availability before scheduling.
+  `;
 
   resultEl.innerHTML = message;
+  updateHiddenQuoteFields(cleanMessage);
+}
+
+function updateHiddenQuoteFields(estimateText) {
+  const categoryText = categoryEl.options[categoryEl.selectedIndex]?.text || "";
+  const subcategoryText = subEl.value || "";
+  const detailText = detailEl.value || "";
+  const materialsText = document.getElementById("materials")?.selectedOptions[0]?.text || "";
+
+  document.getElementById("selectedCategory").value = categoryText;
+  document.getElementById("selectedService").value = subcategoryText;
+  document.getElementById("selectedOption").value = detailText;
+  document.getElementById("selectedMaterials").value = materialsText;
+  document.getElementById("estimatedResult").value = estimateText;
 }
 
 function scrollToQuote() {
@@ -251,6 +271,5 @@ function scrollToTop() {
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("backToTop");
   if (!btn) return;
-
   btn.style.display = window.scrollY > 500 ? "block" : "none";
 });
