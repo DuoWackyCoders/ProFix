@@ -511,6 +511,18 @@ button:hover {
   min-height: 100px;
 }
 
+.quote-helper {
+  max-width: 680px;
+  margin: 0 auto 24px;
+  color: #555;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.dark .quote-helper {
+  color: #ddd;
+}
+
 /* SERVICE AREA */
 .service-area {
   padding: 65px 20px;
@@ -779,4 +791,16 @@ footer {
 
 .dark .pricing-note {
   background: #222;
+}
+
+.photo-note {
+  max-width: 520px;
+  margin: 10px auto 20px;
+  font-size: 15px;
+  color: #555;
+  font-weight: 600;
+}
+
+.dark .photo-note {
+  color: #ddd;
 }
