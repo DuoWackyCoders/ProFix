@@ -84,8 +84,8 @@ const data = {
     },
     "Sprinkler Repair": {
       "Sprinkler head replacement": 125,
-      "Sprinkler head adjustment / raise": 125,
-      "Leaking sprinkler head replacement": 125,
+      "Sprinkler head adjustment / raise / Move": 175,
+      "Leaking sprinkler head replacement + repair": 195,
       "Exposed sprinkler pipe repair": 175
     },
     "General Maintenance": {
@@ -205,7 +205,7 @@ function generateQuote() {
   }
 
   if (sub === "Sprinkler Repair") {
-    message += " Includes minimum service call. Additional heads are typically $75 each. Pipe repair starts at $175. Any additional issues will be reviewed before work continues.";
+    message += " Includes minimum service call. Additional heads are typically $95 each. Pipe repair starts at $175. Any additional issues will be reviewed before work continues.";
   }
 
   if (materials === "profix") {
