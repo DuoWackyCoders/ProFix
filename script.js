@@ -34,7 +34,7 @@ const data = {
     },
     "Garbage Disposal": {
       "Standard replacement": 150,
-      "New install": 250,
+      "New install": 325,
       "Added plumbing or electrical modifications": "custom"
     }
   },
